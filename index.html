@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#08060b" />
+  <meta name="description" content="A little light, a lot of love. A Diwali surprise by Kanhaiya Mishra." />
+  <title>Diwali Magic 2026 | Kanhaiya Mishra</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="grain"></div>
+  <canvas id="fireworks" aria-hidden="true"></canvas>
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="Diwali Magic home"><span class="brand-mark">✦</span> DEEP<span>OTSAV</span></a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#meaning">The feeling</a>
+      <a href="#surprises">Surprises</a>
+      <a href="#finale">Finale</a>
+    </nav>
+    <button class="sound-toggle" id="soundToggle" aria-label="Toggle ambient sound" title="Toggle sound"><span>♫</span><i>Sound off</i></button>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu">☰</button>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-image"></div>
+      <div class="hero-vignette"></div>
+      <div class="hero-content reveal">
+        <p class="eyebrow"><span></span> A NIGHT OF A THOUSAND LIGHTS <span></span></p>
+        <div class="hero-diya" aria-hidden="true"><span>✺</span></div>
+        <h1>Some nights<br>are made of <em>magic.</em></h1>
+        <p class="hero-copy">Tonight, may every little light remind you how loved, valued, and special you are.</p>
+        <div class="hero-actions">
+          <a class="button button-gold" href="#surprises">Open your surprise <b>↗</b></a>
+          <button class="text-button" id="igniteBtn">Light up the sky <span>✦</span></button>
+        </div>
+        <div class="hero-signature">A little something from <strong>Kanhaiya Mishra</strong></div>
+      </div>
+      <div class="scroll-cue"><span></span> SCROLL TO FEEL THE MAGIC</div>
+      <div class="hero-side-note">HAPPINESS · LIGHT · TOGETHERNESS</div>
+    </section>
+
+    <section class="intro section-pad" id="meaning">
+      <div class="section-kicker reveal">01 / THE FEELING</div>
+      <div class="intro-grid">
+        <div class="intro-heading reveal">
+          <p class="gold-overline">MORE THAN A FESTIVAL</p>
+          <h2>Light is brighter<br>when <em>shared.</em></h2>
+        </div>
+        <div class="intro-copy reveal">
+          <p>Diwali isn't only about the lamps we place outside. It's about the warmth we carry for the people who make life beautiful.</p>
+          <p>So this little corner of the internet is dedicated to the people who make my world brighter — my family, my friends, and someone truly special.</p>
+          <div class="tiny-rule"></div>
+          <span class="handwritten">Made with love, just for you.</span>
+        </div>
+      </div>
+      <div class="floating-lamp lamp-one">✧</div><div class="floating-lamp lamp-two">✦</div>
+    </section>
+
+    <section class="surprise-section section-pad" id="surprises">
+      <div class="section-kicker reveal">02 / PICK YOUR LITTLE UNIVERSE</div>
+      <div class="section-title reveal">
+        <p class="gold-overline">THREE DOORS. THREE FEELINGS.</p>
+        <h2>Who's making<br>your world <em>glow?</em></h2>
+        <p class="muted">Choose a door. There's a little surprise waiting behind each one.</p>
+      </div>
+      <div class="door-grid">
+        <article class="door-card family-card reveal">
+          <div class="door-image"></div><div class="door-shade"></div>
+          <div class="door-number">01 — MY ROOTS</div>
+          <div class="door-content"><span class="door-icon">♡</span><h3>For my<br>Family</h3><p>For the people who are my first home.</p><button class="door-open" data-surprise="family">Open this love <span>↗</span></button></div>
+        </article>
+        <article class="door-card friends-card reveal">
+          <div class="door-image"></div><div class="door-shade"></div>
+          <div class="door-number">02 — MY CHAOS</div>
+          <div class="door-content"><span class="door-icon">✳</span><h3>For my<br>Friends</h3><p>For the beautiful madness called friendship.</p><button class="door-open" data-surprise="friends">Unlock the fun <span>↗</span></button></div>
+        </article>
+        <article class="door-card special-card reveal">
+          <div class="door-image"></div><div class="door-shade"></div>
+          <div class="door-number">03 — MY SECRET</div>
+          <div class="door-content"><span class="door-icon">∞</span><h3>Someone<br>Special</h3><p>For the person who makes ordinary feel magical.</p><button class="door-open" data-surprise="special">Open the secret <span>↗</span></button></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="quote-section">
+      <div class="quote-backdrop"></div>
+      <div class="quote-inner reveal">
+        <span class="quote-mark">“</span>
+        <h2>May your life be as bright<br>as the <em>lights you bring</em><br>into other people's lives.</h2>
+        <p>THIS IS MY DIWALI WISH FOR YOU</p>
+      </div>
+    </section>
+
+    <section class="finale section-pad" id="finale">
+      <div class="section-kicker reveal">03 / ONE LAST THING</div>
+      <div class="finale-content reveal">
+        <div class="finale-orb"><span>✦</span></div>
+        <p class="gold-overline">MAKE A WISH</p>
+        <h2>Ready for a little<br><em>Diwali magic?</em></h2>
+        <p class="muted">Tap the button. Make a wish. Let the sky celebrate with you.</p>
+        <button class="button button-gold big-button" id="wishBtn">Make my wish <span>✧</span></button>
+        <p class="wish-result" id="wishResult" aria-live="polite"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-star">✦</div>
+    <p>With light, love & a little bit of magic.</p>
+    <strong>KANHAIYA MISHRA</strong>
+    <span>HAPPY DIWALI · 2026</span>
+  </footer>
+
+  <div class="modal" id="surpriseModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-backdrop" data-close="true"></div>
+    <div class="modal-panel">
+      <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+      <div class="modal-spark">✦</div>
+      <p class="gold-overline" id="modalKicker">A NOTE FROM THE HEART</p>
+      <h2 id="modalTitle">For you, with love.</h2>
+      <p id="modalMessage"></p>
+      <div class="modal-sign">— Kanhaiya <span>♡</span></div>
+      <button class="button button-outline" id="modalCelebrate">Celebrate this moment ✦</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
