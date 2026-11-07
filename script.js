@@ -384,10 +384,13 @@ window.addEventListener("pointermove", event => {
 // ==========================================
 // 13. OPTIONAL AMBIENT SOUND
 // ==========================================
- 
+
 let audioContext = null;
 
-let soundOn = false;
+let soundOn = true;
+
+$("#soundToggle i").textContent = "Sound on";
+$("#soundToggle span").textContent = "♫";
 
 let soundTimer = null;
 
@@ -440,78 +443,46 @@ function playChime() {
 }
 
 
-// ==========================================
-// SOUND SYSTEM - DEFAULT ON
-// ==========================================
+// Sound toggle button
 
-let audioContext = null;
-let soundOn = true;
-let soundTimer = null;
+$("#soundToggle").addEventListener("click", async () => {
 
-// Update sound button
-function updateSoundButton() {
+  if (!audioContext) {
+
+    audioContext = new (
+      window.AudioContext ||
+      window.webkitAudioContext
+    )();
+
+  }
+
+  if (audioContext.state === "suspended") {
+
+    await audioContext.resume();
+
+  }
+
+  soundOn = !soundOn;
+
   $("#soundToggle i").textContent =
     soundOn ? "Sound on" : "Sound off";
 
   $("#soundToggle span").textContent =
     soundOn ? "♫" : "♪";
-}
-
-// Initial button state
-updateSoundButton();
-
-// Start audio system
-async function startSound() {
-  if (!soundOn) return;
-
-  try {
-    if (!audioContext) {
-      audioContext = new (
-        window.AudioContext ||
-        window.webkitAudioContext
-      )();
-    }
-
-    if (audioContext.state === "suspended") {
-      await audioContext.resume();
-    }
-
-    if (audioContext.state === "running" && !soundTimer) {
-      playChime();
-      soundTimer = setInterval(playChime, 1800);
-    }
-  } catch (error) {
-    console.log("Audio playback blocked:", error);
-  }
-}
-
-// Try automatic sound after website opens
-window.addEventListener("load", () => {
-  setTimeout(startSound, 1000);
-});
-
-// Sound toggle button
-$("#soundToggle").addEventListener("click", async () => {
-  soundOn = !soundOn;
 
   if (soundOn) {
-    await startSound();
+
+    playChime();
+
+    soundTimer = setInterval(playChime, 1800);
+
   } else {
+
     clearInterval(soundTimer);
-    soundTimer = null;
+
   }
 
-  updateSoundButton();
 });
-
-// Retry after the first visitor interaction
-document.addEventListener("pointerdown", () => {
-  if (soundOn && !soundTimer) {
-    startSound();
-  }
-}, { once: true });
-
-
 
 
 // ==========================================
@@ -534,11 +505,12 @@ setTimeout(() => {
 
 
 
+
 // Welcome voice after 2 seconds
 window.addEventListener("load", () => {
   setTimeout(() => {
     const message = new SpeechSynthesisUtterance(
-      "Happy Diwali, Kanhaiya! May your life always shine with happiness, love and success. Welcome to Diwali Magic 2026!"
+      "Happy Diwali, May your life always shine with happiness, love and success. Welcome to Diwali Magic 2026!"
     );
 
     message.lang = "en-IN";
@@ -547,5 +519,5 @@ window.addEventListener("load", () => {
     message.volume = 1;
 
     window.speechSynthesis.speak(message);
-  }, 2000);
-});
+  }, 800);
+});       
