@@ -387,10 +387,7 @@ window.addEventListener("pointermove", event => {
 
 let audioContext = null;
 
-let soundOn = true;
-
-$("#soundToggle i").textContent = "Sound on";
-$("#soundToggle span").textContent = "♫";
+let soundOn = false;
 
 let soundTimer = null;
 
