@@ -499,4 +499,22 @@ setTimeout(() => {
   }
 
 }, 900);
-                                  
+
+
+
+
+// Welcome voice after 2 seconds
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    const message = new SpeechSynthesisUtterance(
+      "Happy Diwali, Kanhaiya! May your life always shine with happiness, love and success. Welcome to Diwali Magic 2026!"
+    );
+
+    message.lang = "en-IN";
+    message.rate = 0.9;
+    message.pitch = 1.2;
+    message.volume = 1;
+
+    window.speechSynthesis.speak(message);
+  }, 2000);
+});
