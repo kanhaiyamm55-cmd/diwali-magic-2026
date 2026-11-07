@@ -53,12 +53,11 @@ Keep shining. ✨❤️`
 
 
 // ==========================================
-// 2. OPEN SURPRISE POPUP
+// 2. OPEN AND CLOSE SURPRISE
 // ==========================================
 
 function openSurprise(type) {
   const item = messages[type];
-
   if (!item) return;
 
   $("#modalKicker").textContent = item.kicker;
@@ -67,16 +66,10 @@ function openSurprise(type) {
 
   modal.classList.add("open");
   modal.setAttribute("aria-hidden", "false");
-
   document.body.style.overflow = "hidden";
 
   burst(window.innerWidth / 2, window.innerHeight / 2, 95);
 }
-
-
-// ==========================================
-// 3. CLOSE SURPRISE POPUP
-// ==========================================
 
 function closeSurprise() {
   modal.classList.remove("open");
@@ -93,20 +86,16 @@ document.querySelectorAll("[data-surprise]").forEach(button => {
 $("#modalClose").addEventListener("click", closeSurprise);
 
 modal.addEventListener("click", event => {
-  if (event.target.dataset.close) {
-    closeSurprise();
-  }
+  if (event.target.dataset.close) closeSurprise();
 });
 
 document.addEventListener("keydown", event => {
-  if (event.key === "Escape") {
-    closeSurprise();
-  }
+  if (event.key === "Escape") closeSurprise();
 });
 
 
 // ==========================================
-// 4. CANVAS FIREWORKS ENGINE
+// 3. FIREWORKS ENGINE
 // ==========================================
 
 const canvas = $("#fireworks");
@@ -132,11 +121,6 @@ function resizeCanvas() {
 
 window.addEventListener("resize", resizeCanvas);
 resizeCanvas();
-
-
-// ==========================================
-// 5. FIREWORKS PARTICLES
-// ==========================================
 
 function burst(x, y, count = 70) {
   const colors = [
@@ -164,11 +148,6 @@ function burst(x, y, count = 70) {
   }
 }
 
-
-// ==========================================
-// 6. ANIMATE FIREWORKS
-// ==========================================
-
 function animateFireworks() {
   ctx.clearRect(0, 0, W, H);
 
@@ -177,7 +156,6 @@ function animateFireworks() {
   for (const p of particles) {
     p.x += p.vx;
     p.y += p.vy;
-
     p.vy += 0.035;
     p.vx *= 0.99;
     p.life--;
@@ -200,11 +178,6 @@ function animateFireworks() {
 
 animateFireworks();
 
-
-// ==========================================
-// 7. RANDOM FIREWORKS
-// ==========================================
-
 function randomBurst() {
   burst(
     W * (0.18 + Math.random() * 0.64),
@@ -215,7 +188,7 @@ function randomBurst() {
 
 
 // ==========================================
-// 8. LIGHT UP THE SKY BUTTON
+// 4. FIREWORKS BUTTON
 // ==========================================
 
 $("#igniteBtn").addEventListener("click", () => {
@@ -226,7 +199,7 @@ $("#igniteBtn").addEventListener("click", () => {
 
 
 // ==========================================
-// 9. MAKE A WISH GENERATOR
+// 5. WISH GENERATOR
 // ==========================================
 
 $("#wishBtn").addEventListener("click", () => {
@@ -240,9 +213,8 @@ $("#wishBtn").addEventListener("click", () => {
     "May happiness, peace and success always follow you. ✨"
   ];
 
-  const randomWish = wishes[Math.floor(Math.random() * wishes.length)];
-
-  $("#wishResult").textContent = randomWish;
+  $("#wishResult").textContent =
+    wishes[Math.floor(Math.random() * wishes.length)];
 
   for (let i = 0; i < 7; i++) {
     setTimeout(randomBurst, i * 160);
@@ -251,7 +223,7 @@ $("#wishBtn").addEventListener("click", () => {
 
 
 // ==========================================
-// 10. SCROLL REVEAL ANIMATIONS
+// 6. SCROLL REVEAL
 // ==========================================
 
 const observer = new IntersectionObserver(entries => {
@@ -261,9 +233,7 @@ const observer = new IntersectionObserver(entries => {
       observer.unobserve(entry.target);
     }
   });
-}, {
-  threshold: 0.12
-});
+}, { threshold: 0.12 });
 
 document.querySelectorAll(".reveal").forEach(element => {
   observer.observe(element);
@@ -271,7 +241,7 @@ document.querySelectorAll(".reveal").forEach(element => {
 
 
 // ==========================================
-// 11. MOBILE NAVIGATION
+// 7. MOBILE NAVIGATION
 // ==========================================
 
 $("#menuToggle").addEventListener("click", () => {
@@ -286,7 +256,7 @@ document.querySelectorAll(".nav-links a").forEach(link => {
 
 
 // ==========================================
-// 12. CURSOR GLOW EFFECT
+// 8. CURSOR GLOW
 // ==========================================
 
 const glow = $("#cursorGlow");
@@ -298,7 +268,7 @@ window.addEventListener("pointermove", event => {
 
 
 // ==========================================
-// 13. SOUND SYSTEM - DEFAULT ON
+// 9. SOUND SYSTEM - DEFAULT ON
 // ==========================================
 
 let audioContext = null;
@@ -311,33 +281,14 @@ function updateSoundButton() {
   const label = soundButton.querySelector("i");
   const icon = soundButton.querySelector("span");
 
-  if (label) {
-    label.textContent = soundOn ? "Sound on" : "Sound off";
-  }
-
-  if (icon) {
-    icon.textContent = soundOn ? "♫" : "♪";
-  }
+  if (label) label.textContent = soundOn ? "Sound on" : "Sound off";
+  if (icon) icon.textContent = soundOn ? "♫" : "♪";
 
   soundButton.setAttribute("aria-pressed", String(soundOn));
 }
 
-// Initial button state
+// Immediately show Sound ON
 updateSoundButton();
-
-function startSound() {
-  if (!soundOn || !audioContext) return;
-
-  playChime();
-
-  clearInterval(soundTimer);
-  soundTimer = setInterval(playChime, 3000);
-}
-
-function stopSound() {
-  clearInterval(soundTimer);
-  soundTimer = null;
-}
 
 function playChime() {
   if (!soundOn || !audioContext) return;
@@ -353,12 +304,10 @@ function playChime() {
 
   gain.gain.setValueAtTime(0.0001, audioContext.currentTime);
   gain.gain.exponentialRampToValueAtTime(
-    0.025,
-    audioContext.currentTime + 0.04
+    0.025, audioContext.currentTime + 0.04
   );
   gain.gain.exponentialRampToValueAtTime(
-    0.0001,
-    audioContext.currentTime + 0.7
+    0.0001, audioContext.currentTime + 0.7
   );
 
   osc.connect(gain);
@@ -368,8 +317,6 @@ function playChime() {
   osc.stop(audioContext.currentTime + 0.72);
 }
 
-// Sound starts after the visitor's first interaction.
-// This respects mobile browser autoplay restrictions.
 async function unlockSound() {
   if (!soundOn) return;
 
@@ -385,23 +332,26 @@ async function unlockSound() {
     }
 
     if (!soundTimer) {
-      startSound();
+      playChime();
+      soundTimer = setInterval(playChime, 3000);
     }
   } catch (error) {
-    console.log("Sound could not start:", error);
+    console.log("Audio unavailable:", error);
   }
 }
 
-// Start sound on first interaction anywhere except sound button.
+// Sound begins on first visitor interaction
 document.addEventListener("pointerdown", event => {
-  if (event.target.closest("#soundToggle")) return;
-  unlockSound();
+  if (!event.target.closest("#soundToggle")) {
+    unlockSound();
+  }
 }, { once: true });
 
 soundButton.addEventListener("click", async () => {
   if (soundOn) {
     soundOn = false;
-    stopSound();
+    clearInterval(soundTimer);
+    soundTimer = null;
   } else {
     soundOn = true;
     await unlockSound();
@@ -412,48 +362,71 @@ soundButton.addEventListener("click", async () => {
 
 
 // ==========================================
-// 14. WELCOME DIWALI VOICE
+// 10. DIWALI GREETING VOICE
 // ==========================================
 
-let welcomeVoiceStarted = false;
+let voiceFinished = false;
+let voiceStarted = false;
+let visitorInteracted = false;
 
-function speakWelcome() {
-  if (welcomeVoiceStarted) return;
+const greetingText =
+  "Hello and welcome to Diwali Magic 2026. " +
+  "May this beautiful festival of lights fill your home " +
+  "with happiness, love, peace and prosperity. " +
+  "May every diya bring new hope, every sparkle bring a smile, " +
+  "and every moment bring beautiful memories. " +
+  "Wishing you and your family a wonderful and blessed Diwali. " +
+  "Happy Diwali!";
+
+function speakGreeting() {
   if (!("speechSynthesis" in window)) return;
+  if (voiceFinished || voiceStarted) return;
 
-  welcomeVoiceStarted = true;
+  voiceStarted = true;
 
-  const message = new SpeechSynthesisUtterance(
-    "May the beautiful diyas bring light into your home. " +
-    "May your life be filled with happiness, love, peace and prosperity. " +
-    "May every dream come true and every new beginning shine bright. " +
-    "Wishing you and your family endless joy and blessings. " +
-    "Happy Diwali!"
-  );
+  const message = new SpeechSynthesisUtterance(greetingText);
 
   message.lang = "en-IN";
   message.rate = 0.88;
   message.pitch = 1.15;
   message.volume = 1;
 
-  window.speechSynthesis.cancel();
+  message.onend = () => {
+    voiceFinished = true;
+    voiceStarted = false;
+  };
+
+  message.onerror = () => {
+    voiceStarted = false;
+  };
+
   window.speechSynthesis.speak(message);
 }
 
-// Speak after one second
+// Try to speak after one second
 window.addEventListener("load", () => {
-  setTimeout(speakWelcome, 1000);
+  setTimeout(() => {
+    speakGreeting();
+  }, 1000);
 });
+
+// If browser blocks automatic speech,
+// start greeting on the visitor's first tap.
+document.addEventListener("pointerdown", () => {
+  visitorInteracted = true;
+
+  if (!voiceFinished && !voiceStarted) {
+    speakGreeting();
+  }
+}, { once: true });
 
 
 // ==========================================
-// 15. INITIAL DIWALI SPARKLE
+// 11. INITIAL DIWALI SPARKLE
 // ==========================================
 
 setTimeout(() => {
-  if (
-    !window.matchMedia("(prefers-reduced-motion: reduce)").matches
-  ) {
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     burst(W * 0.78, H * 0.25, 38);
   }
 }, 900);
