@@ -387,7 +387,7 @@ window.addEventListener("pointermove", event => {
 
 let audioContext = null;
 
-let soundOn = false;
+let soundOn = true;
 
 let soundTimer = null;
 
