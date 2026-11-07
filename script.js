@@ -507,7 +507,7 @@ setTimeout(() => {
 window.addEventListener("load", () => {
   setTimeout(() => {
     const message = new SpeechSynthesisUtterance(
-      "Happy Diwali, Kanhaiya! May your life always shine with happiness, love and success. Welcome to Diwali Magic 2026!"
+      "Happy Diwali, May your life always shine with happiness, love and success. Welcome to Diwali Magic 2026!"
     );
 
     message.lang = "en-IN";
@@ -516,5 +516,5 @@ window.addEventListener("load", () => {
     message.volume = 1;
 
     window.speechSynthesis.speak(message);
-  }, 2000);
+  }, 1000);
 });
